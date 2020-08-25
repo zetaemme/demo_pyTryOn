@@ -12,7 +12,20 @@ class main:
         self.old_y = None
         self.penwidth = 5
         self.drawWidgets()
+        self.c.bind('<B1-Motion>',self.paint)
+        self.c.bind('<ButtonRelease-1>',self.reset)
     
+    def paint(self,e):
+        if self.old_x and self.old_y:
+            self.c.create_line(self.old_x,self.old_y,e.x,e.y,width=self.penwidth,fill=self.color_fg,capstyle=ROUND,smooth=True)
+        
+        self.old_x = e.x
+        self.old_y = e.y
+
+    def reset(self,e):
+        self.old_x = None
+        self.old_y = None
+
     def changeW(self,e):
         self.penwidth = e
 
@@ -23,9 +36,11 @@ class main:
         self.c.delete(ALL)
 
     def change_fg(self):
-        pass
+        self.color_fg = colorchooser.askcolor(color=self.color_fg)[1]
+
     def change_bg(self):
-        pass
+        self.color_bg = colorchooser.askcolor(color=self.color_bg)[1]
+        self.c['bg']=self.color_bg
 
     def drawWidgets(self):
         self.controls= Frame(self.master, padx=5, pady=5)
