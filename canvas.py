@@ -39,7 +39,7 @@ class main:
         self.penwidth = e
 
     def save(self):
-        file = filedialog.asksaveasfilename(filetypes=[('Portable Network Graphics','*png')])
+        file = filedialog.asksaveasfilename(filetypes=[('Portable Network Graphics','*png')], initialfile=self.file[len(self.file)-12:])
         if file:
             x= self.master.winfo_rootx()+self.c.winfo_x()
             y=self.master.winfo_rooty()+self.c.winfo_y()
@@ -48,6 +48,12 @@ class main:
 
             PIL.ImageGrab.grab().crop((x+2,y+2,x1-2,y1-2)).save(file+'.png')
 
+    def importImage(self):
+        file=filedialog.askopenfilename()
+        self.file=file
+        self.image2 = ImageTk.PhotoImage(file = self.file)
+        print(type(self.image2))
+        self.c.create_image(96,130,image = self.image2, anchor=CENTER)
     def clear(self):
         self.c.delete(ALL)
 
@@ -82,10 +88,11 @@ class main:
 
        
 
-        self.image2 = ImageTk.PhotoImage(file = "pictures/000001_0.png")
+        #self.image2 = ImageTk.PhotoImage(file = "pictures/000812_0.png")
+        #print(type(self.image2))
         self.c = Canvas(self.master, width=192, height=256, bg=self.color_bg,)
         self.c.pack(fill=NONE, expand=False)
-        self.c.create_image(96,128,image = self.image2, anchor=CENTER)
+        #self.c.create_image(96,130,image = self.image2, anchor=CENTER)
 
         menu = Menu(self.master)
         self.master.config(menu=menu)
@@ -93,6 +100,7 @@ class main:
         filemenu= Menu(menu)
         menu.add_cascade(label='File..', menu=filemenu)
         filemenu.add_command(label='Export..', command=self.save)
+        filemenu.add_command(label='Import..', command=self.importImage)
         
         colormenu= Menu(menu)
         menu.add_cascade(label='Colors..', menu=colormenu)
