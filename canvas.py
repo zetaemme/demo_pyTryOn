@@ -8,6 +8,7 @@ class main:
         self.master = master
         self.color_fg = 'black'
         self.color_bg = 'white'
+        
         self.old_x = None
         self.old_y = None
         self.penwidth = 5
@@ -30,7 +31,14 @@ class main:
         self.penwidth = e
 
     def save(self):
-        pass
+        file = filedialog.asksaveasfilename(filetypes=[('Portable Network Graphics','*png')])
+        if file:
+            x= self.master.winfo_rootx()+self.c.winfo_x()
+            y=self.master.winfo_rooty()+self.c.winfo_y()
+            x1= x + self.c.winfo_width()
+            y1= y + self.c.winfo_height()
+
+            PIL.ImageGrab.grab().crop((x,y,x1,y1)).save(file+'.png')
 
     def clear(self):
         self.c.delete(ALL)
