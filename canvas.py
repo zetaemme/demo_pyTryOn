@@ -59,9 +59,9 @@ class Main:
         self.filename = filename
 
         rgb_image = colorize_image(Image.open(self.filename))
-        rgb_image.save('./Data_preprocessing/temp/' + self.filename[len(self.filename) - 12:])
+        rgb_image.save('./pictures/temp/' + self.filename[len(self.filename) - 12:])
 
-        self.image2 = ImageTk.PhotoImage(file='./Data_preprocessing/temp/' + self.filename[len(self.filename) - 12:])
+        self.image2 = ImageTk.PhotoImage(file='./pictures/temp/' + self.filename[len(self.filename) - 12:])
         self.c.create_image(96, 130, image=self.image2, anchor=CENTER)
 
     def clear(self):
@@ -183,7 +183,7 @@ def back_to_grayscale(image):
     h, w = gs_image.size
     
     for x in range(0, h - 1):
-        for y in range(0 , w -1):
+        for y in range(0, w - 1):
             gs = gs_image.getpixel((x, y))
             
             if gs == 72:
@@ -202,39 +202,45 @@ def back_to_grayscale(image):
     return gs_image
 
 
-if __name__ == '__main__':
-    if not os.path.exists('./Data_preprocessing/temp'):
-        os.mkdir('./Data_preprocessing/temp')
+def launch_canvas():
+    if not os.path.exists('./pictures/temp'):
+        os.mkdir('./pictures/temp')
 
-    for f in glob.glob('./Data_preprocessing/temp/*'):
-        os.remove('./Data_preprocessing/temp/' + f)
+    for f in glob.glob('./pictures/temp/*'):
+        os.remove(f)
 
-    img_selection = [[str(s) for s in line.split()] for line in open('./Data_preprocessing/demo_dataset.txt').readlines()]
-    img_selection = [str(item)[2:14] for item in img_selection]
-        
-    for filename in os.listdir('./Data_preprocessing/test_label'):
-        if filename not in img_selection:
-            os.remove('./Data_preprocessing/test_label/' + filename)
-                
-    img_selection = [item.replace('.png', '.jpg') for item in img_selection]
-        
-    for filename in os.listdir('./Data_preprocessing/test_img'):
-        if filename not in img_selection:
-            os.remove('./Data_preprocessing/test_img/' + filename)
+    # Vecchio codice per pulizia dataset
 
-    color_files = [filename for filename in os.listdir('./Data_preprocessing/test_color')]
-
-    if len(color_files) > 10:
-        for f in sample(os.listdir('./Data_preprocessing/test_color'), 2022):
-            os.remove('./Data_preprocessing/test_color/' + f)
-            
-    edge_files = [filename for filename in os.listdir('./Data_preprocessing/test_edge')]
-    
-    for filename in os.listdir('./Data_preprocessing/test_edge'):
-        if filename not in edge_files:
-            os.remove('./Data_preprocessing/test_edge' + filename)
+    # img_selection = [[str(s) for s in line.split()] for line in open('./Data_preprocessing/demo_dataset.txt').readlines()]
+    # img_selection = [str(item)[2:14] for item in img_selection]
+    #
+    # for filename in os.listdir('./Data_preprocessing/test_label'):
+    #     if filename not in img_selection:
+    #         os.remove('./Data_preprocessing/test_label/' + filename)
+    #
+    # img_selection = [item.replace('.png', '.jpg') for item in img_selection]
+    #
+    # for filename in os.listdir('./Data_preprocessing/test_img'):
+    #     if filename not in img_selection:
+    #         os.remove('./Data_preprocessing/test_img/' + filename)
+    #
+    # color_files = [filename for filename in os.listdir('./Data_preprocessing/test_color')]
+    #
+    # if len(color_files) > 10:
+    #     for f in sample(os.listdir('./Data_preprocessing/test_color'), 2022):
+    #         os.remove('./Data_preprocessing/test_color/' + f)
+    #
+    # edge_files = [filename for filename in os.listdir('./Data_preprocessing/test_edge')]
+    #
+    # for filename in os.listdir('./Data_preprocessing/test_edge'):
+    #     if filename not in edge_files:
+    #         os.remove('./Data_preprocessing/test_edge' + filename)
 
     root = Tk()
-    main(root)
+    Main(root)
     root.title("Canvas: Modify Labels")
     root.mainloop()
+
+
+if __name__ == '__main__':
+    launch_canvas()

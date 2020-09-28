@@ -2,8 +2,10 @@ from tkinter import *
 from tkinter import messagebox
 import PIL
 from PIL import ImageGrab, ImageTk, Image, ImageDraw
+import os
+from canvas import launch_canvas
 
-OptionDresses =  [
+OptionDresses = [
     "000192_1.jpg",
     "000445_1.jpg",
     "001301_1.jpg",
@@ -11,7 +13,7 @@ OptionDresses =  [
     "002337_1.jpg"
 ]
 
-OptionModels =  [
+OptionModels = [
     "000812_0.jpg",
     "000988_0.jpg",
     "000001_0.jpg",
@@ -103,16 +105,16 @@ menuModels= OptionMenu(root,variableModels,*OptionModels)
 menuModels.grid(row=0,column=5)
 menuDresses.grid(row=2,column=5)
 
-def lauchCanvas():
-    messagebox.showinfo('Message', 'You clicked the Submit button!')
 
-btn = Button(root, text = "Modify ColorMap", command=lauchCanvas) 
+btn = Button(root, text = "Modify ColorMap", command=launch_canvas)
 btn.grid(row = 0, column = 6)
+
 
 def lauchACGPN():
     messagebox.showinfo('Message', 'You clicked the Submit button!')
-    
-btn = Button(root, text = "LAUNCH ACGPN", command=lauchACGPN) 
-btn.grid(row = 2, column = 6)
+
+
+btn = Button(root, text="LAUNCH ACGPN", command=lauchACGPN)
+btn.grid(row=2, column=6)
 
 root.mainloop()
