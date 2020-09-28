@@ -12,43 +12,43 @@ OptionDresses =  [
 ]
 
 OptionModels =  [
-    "000812_0.png",
-    "000988_0.png",
-    "000001_0.png",
-    "000174_0.png",
-    "002474_0.png"
+    "000812_0.jpg",
+    "000988_0.jpg",
+    "000001_0.jpg",
+    "000174_0.jpg",
+    "002474_0.jpg"
 ]
 
 root = Tk()
 root.title("PYTON")
 
 
-img1 = ImageTk.PhotoImage(Image.open('./pictures/000812_0.png'))
+img1 = ImageTk.PhotoImage(Image.open('./pictures/000812_0.jpg'))
 img_1= Label(root, image=img1)
 img_1.grid(row=0, column=0)
 
-img2 = ImageTk.PhotoImage(Image.open('./pictures/000988_0.png'))
+img2 = ImageTk.PhotoImage(Image.open('./pictures/000988_0.jpg'))
 img_2= Label(root, image=img2)
 img_2.grid(row=0, column=1)
 
-img3 = ImageTk.PhotoImage(Image.open('./pictures/000001_0.png'))
+img3 = ImageTk.PhotoImage(Image.open('./pictures/000001_0.jpg'))
 img_3= Label(root, image=img3)
 img_3.grid(row=0, column=2)
 
-img4 = ImageTk.PhotoImage(Image.open('./pictures/000174_0.png'))
+img4 = ImageTk.PhotoImage(Image.open('./pictures/000174_0.jpg'))
 img_4= Label(root, image=img4)
 img_4.grid(row=0, column=3)
 
-img5 = ImageTk.PhotoImage(Image.open('./pictures/002474_0.png'))
+img5 = ImageTk.PhotoImage(Image.open('./pictures/002474_0.jpg'))
 img_5= Label(root, image=img5)
 img_5.grid(row=0, column=4)
 
 
-img_lbl_1=Label(root, text="000812_0.png")
-img_lbl_2=Label(root, text="000988_0.png")
-img_lbl_3=Label(root, text="000001_0.png")
-img_lbl_4=Label(root, text="000174_0.png")
-img_lbl_5=Label(root, text="002474_0.png")
+img_lbl_1=Label(root, text="000812_0.jpg")
+img_lbl_2=Label(root, text="000988_0.jpg")
+img_lbl_3=Label(root, text="000001_0.jpg")
+img_lbl_4=Label(root, text="000174_0.jpg")
+img_lbl_5=Label(root, text="002474_0.jpg")
 
 img_lbl_1.grid(row=1, column=0)
 img_lbl_2.grid(row=1, column=1)

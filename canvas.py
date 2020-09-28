@@ -50,7 +50,7 @@ class main:
             x1= x + self.c.winfo_width()
             y1= y + self.c.winfo_height()
 
-            back_to_garyscale(PIL.ImageGrab.grab().crop((x+2,y+2,x1-2,y1-2))).save(file+'.png')
+            back_to_garyscale(PIL.ImageGrab.grab().crop((x+2,y+2,x1-2,y1-2))).save(file+".png")
           
 
             files = glob.glob('pictures/temp/*')
@@ -204,5 +204,5 @@ def back_to_garyscale(image):
 if __name__=='__main__':
     root = Tk()
     main(root)
-    root.title("DrawingApp")
+    root.title("Canvas: Modify Labels")
     root.mainloop()
