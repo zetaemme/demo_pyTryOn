@@ -6,11 +6,8 @@ import sys
 from canvas import launch_canvas
 from test import launch_acgpn
 
-# sys.path.append('\\data')
-# sys.path.append('\\options')
-# sys.path.append('\\models')
-# sys.path.append('\\util')
 
+# Dresses drop-down menu choices
 OptionDresses = [
     "000192_1.jpg",
     "000445_1.jpg",
@@ -19,6 +16,7 @@ OptionDresses = [
     "002337_1.jpg"
 ]
 
+# Models drop-down menu choices
 OptionModels = [
     "000812_0.jpg",
     "000988_0.jpg",
@@ -27,6 +25,7 @@ OptionModels = [
     "002474_0.jpg"
 ]
 
+# Clean-up routine for the dataset target locations
 for filename in os.listdir('../Data_preprocessing/test_color'):
     os.remove('../Data_preprocessing/test_color/' + filename)
 
@@ -39,6 +38,7 @@ for filename in os.listdir('../Data_preprocessing/test_label'):
 root = Tk()
 root.title("Demo PyTryOn")
 
+# Models UI images
 img1 = ImageTk.PhotoImage(Image.open('pictures/Models/000812_0.jpg'))
 img_1 = Label(root, image=img1)
 img_1.grid(row=0, column=0)
@@ -60,6 +60,7 @@ img_5 = Label(root, image=img5)
 img_5.grid(row=0, column=4)
 
 
+# Models names
 img_lbl_1 = Label(root, text="000812_0.jpg")
 img_lbl_2 = Label(root, text="000988_0.jpg")
 img_lbl_3 = Label(root, text="000001_0.jpg")
@@ -72,6 +73,7 @@ img_lbl_3.grid(row=1, column=2)
 img_lbl_4.grid(row=1, column=3)
 img_lbl_5.grid(row=1, column=4)
 
+# Dresses UI images
 dress1 = ImageTk.PhotoImage(Image.open('pictures/dresses/000192_1.jpg'))
 dress_1 = Label(root, image=dress1)
 dress_1.grid(row=2, column=0)
@@ -92,6 +94,7 @@ dress5 = ImageTk.PhotoImage(Image.open('pictures/dresses/002337_1.jpg'))
 dress_5 = Label(root, image=dress5)
 dress_5.grid(row=2, column=4)
 
+# Dresses names
 dress_lbl_1 = Label(root, text="000192_1.jpg")
 dress_lbl_2 = Label(root, text="000445_1.jpg")
 dress_lbl_3 = Label(root, text="001301_1.jpg")
@@ -104,6 +107,7 @@ dress_lbl_3.grid(row=3, column=2)
 dress_lbl_4.grid(row=3, column=3)
 dress_lbl_5.grid(row=3, column=4)
 
+# Drop-down menues
 variableDresses = StringVar(root)
 variableModels = StringVar(root)
 
@@ -116,7 +120,7 @@ menuModels = OptionMenu(root, variableModels, *OptionModels)
 menuModels.grid(row=0, column=5)
 menuDresses.grid(row=2, column=5)
 
-
+# Wapper for the launch of ACGPN
 def wrapper_acgpn():
     for filename in os.listdir('../Data_preprocessing/test_label'):
         if filename != variableModels.get()[:8] + '.png':
@@ -136,7 +140,7 @@ def wrapper_acgpn():
 
     Image._show(preproc_img.crop((384, 0, w, h)))
 
-
+# Launch buttons
 btn = Button(root, text="Modify ColorMap", command=launch_canvas)
 btn.grid(row=0, column=6)
 

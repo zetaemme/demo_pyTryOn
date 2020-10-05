@@ -8,6 +8,7 @@ from random import sample
 import pyscreenshot as ImageGrab
 
 
+# Main UI class
 class Main:
     def __init__(self, master):
         self.master = master
@@ -28,6 +29,7 @@ class Main:
         self.c.bind('<B1-Motion>', self.paint)
         self.c.bind('<ButtonRelease-1>', self.reset)
     
+    # Creates actual UI response for paint action
     def paint(self, e):
         if self.old_x and self.old_y:
             self.c.create_line(self.old_x, self.old_y, e.x, e.y, width=self.penwidth,
@@ -36,13 +38,16 @@ class Main:
         self.old_x = e.x
         self.old_y = e.y
 
+    # Resets x, y position for the brush
     def reset(self):
         self.old_x = None
         self.old_y = None
 
+    # Cheanges brush width
     def changeW(self, e):
         self.penwidth = e
 
+    # Saves the image on the filesystem
     def save(self):
         filename = filedialog.asksaveasfilename(filetypes=[('Portable Network Graphics', '*png')],
                                             initialfile=self.file[len(self.file)-12:])
@@ -54,6 +59,7 @@ class Main:
 
             back_to_grayscale(ImageGrab.grab().crop((x + 2, y + 2, x1 - 2, y1 - 2))).save(filename + '.png')
 
+    # Opens an image
     def importImage(self):
         filename = filedialog.askopenfilename()
         self.filename = filename
@@ -64,9 +70,11 @@ class Main:
         self.image2 = ImageTk.PhotoImage(file='./pictures/temp/' + self.filename[len(self.filename) - 12:])
         self.c.create_image(96, 130, image=self.image2, anchor=CENTER)
 
+    # Deletes all on screen
     def clear(self):
         self.c.delete(ALL)
 
+    # Changes the brush color
     def change_fg_RA(self):
         self.color_fg = self.new_color_right_arm
 
@@ -89,6 +97,7 @@ class Main:
         self.color_bg = colorchooser.askcolor(color=self.color_bg)[1]
         self.c['bg'] = self.color_bg
 
+    # Draws the UI
     def drawWidgets(self):
         self.controls = Frame(self.master, padx=5, pady=5)
         Label(self.controls, text='Pen Width:', font=('Berlin Sans FB', 15)).grid(row=0, column=0)
@@ -126,7 +135,7 @@ class Main:
         optionmenu.add_command(label='Clear Canvas', command=self.clear)
         optionmenu.add_command(label='Exit', command=self.master.destroy)
 
-
+# Turns the label image to RGB, for better interpretation
 def colorize_image(image):
     # Converte l'immagine da GRAYSCALE a RGB mantenendo la size
     rgb_image = Image.new('RGB', image.size)
@@ -139,20 +148,6 @@ def colorize_image(image):
         for y in range(0, h - 1):
             # Acquisisce il valore RGB del pixel
             r, g, b = rgb_image.getpixel((x, y))
-
-            # Definizione dei colori
-            # Red
-            #new_color_right_arm = 235, 64, 52
-            # Yellow
-            #new_color_pants = 252, 186, 3
-            # Green
-            #new_color_left_arm = 50, 168, 82
-            # Blue
-            # new_color_shirt = 66, 135, 245
-            # Purple
-            #new_color_face = 128, 52, 235
-            # Cyan
-            #new_color_hair = 52, 235, 217
 
             new_color_right_arm = 190, 1, 130
             new_color_left_arm = 189, 130, 1
@@ -167,8 +162,6 @@ def colorize_image(image):
                 rgb_image.putpixel((x, y), new_color_pants)
             elif r == g == b == 11:
                 rgb_image.putpixel((x, y), new_color_left_arm)
-            # elif r == g == b == 4:
-                # rgb_image.putpixel((x, y), new_color_shirt)
             elif r == g == b == 12:
                 rgb_image.putpixel((x, y), new_color_face)
             elif r == g == b == 1:
@@ -176,7 +169,7 @@ def colorize_image(image):
     
     return rgb_image
 
-
+# Turns the label back to grayscale before saving
 def back_to_grayscale(image):
     gs_image = image.convert('L')
 
@@ -192,8 +185,6 @@ def back_to_grayscale(image):
                 gs_image.putpixel((x, y), 8)
             elif gs == 133:
                 gs_image.putpixel((x, y), 11)
-            # elif gs == 127:
-                # gs_image.putpixel((x, y), 4)
             elif gs == 33:
                 gs_image.putpixel((x, y), 12)
             elif gs == 38:
@@ -201,40 +192,13 @@ def back_to_grayscale(image):
                 
     return gs_image
 
-
+# Wrapper for the whole DrawingApp
 def launch_canvas():
     if not os.path.exists('./pictures/temp'):
         os.mkdir('./pictures/temp')
 
     for f in glob.glob('./pictures/temp/*'):
         os.remove(f)
-
-    # Vecchio codice per pulizia dataset
-
-    # img_selection = [[str(s) for s in line.split()] for line in open('./Data_preprocessing/demo_dataset.txt').readlines()]
-    # img_selection = [str(item)[2:14] for item in img_selection]
-    #
-    # for filename in os.listdir('./Data_preprocessing/test_label'):
-    #     if filename not in img_selection:
-    #         os.remove('./Data_preprocessing/test_label/' + filename)
-    #
-    # img_selection = [item.replace('.png', '.jpg') for item in img_selection]
-    #
-    # for filename in os.listdir('./Data_preprocessing/test_img'):
-    #     if filename not in img_selection:
-    #         os.remove('./Data_preprocessing/test_img/' + filename)
-    #
-    # color_files = [filename for filename in os.listdir('./Data_preprocessing/test_color')]
-    #
-    # if len(color_files) > 10:
-    #     for f in sample(os.listdir('./Data_preprocessing/test_color'), 2022):
-    #         os.remove('./Data_preprocessing/test_color/' + f)
-    #
-    # edge_files = [filename for filename in os.listdir('./Data_preprocessing/test_edge')]
-    #
-    # for filename in os.listdir('./Data_preprocessing/test_edge'):
-    #     if filename not in edge_files:
-    #         os.remove('./Data_preprocessing/test_edge' + filename)
 
     root = Tk()
     Main(root)
