@@ -1,4 +1,12 @@
 from tkinter import *
+<<<<<<< HEAD:inference/Demo_pyton.py
+from tkinter import messagebox
+import PIL
+from PIL import ImageGrab, ImageTk, Image, ImageDraw
+import os
+from canvas import launch_canvas
+
+=======
 from PIL import ImageTk, Image
 from shutil import copyfile
 import os
@@ -8,6 +16,7 @@ from test import launch_acgpn
 
 
 # Dresses drop-down menu choices
+>>>>>>> 93f5be76a2540307ba491d746d6f8988b37dc701:Demo_pyton.py
 OptionDresses = [
     "000192_1.jpg",
     "000445_1.jpg",
@@ -16,7 +25,10 @@ OptionDresses = [
     "002337_1.jpg"
 ]
 
+<<<<<<< HEAD:inference/Demo_pyton.py
+=======
 # Models drop-down menu choices
+>>>>>>> 93f5be76a2540307ba491d746d6f8988b37dc701:Demo_pyton.py
 OptionModels = [
     "000812_0.jpg",
     "000988_0.jpg",
@@ -25,6 +37,38 @@ OptionModels = [
     "002474_0.jpg"
 ]
 
+<<<<<<< HEAD:inference/Demo_pyton.py
+root = Tk()
+root.title("PYTON")
+
+
+img1 = ImageTk.PhotoImage(Image.open('./pictures/models/000812_0.jpg'))
+img_1= Label(root, image=img1)
+img_1.grid(row=0, column=0)
+
+img2 = ImageTk.PhotoImage(Image.open('./pictures/models/000988_0.jpg'))
+img_2= Label(root, image=img2)
+img_2.grid(row=0, column=1)
+
+img3 = ImageTk.PhotoImage(Image.open('./pictures/models/000001_0.jpg'))
+img_3= Label(root, image=img3)
+img_3.grid(row=0, column=2)
+
+img4 = ImageTk.PhotoImage(Image.open('./pictures/models/000174_0.jpg'))
+img_4= Label(root, image=img4)
+img_4.grid(row=0, column=3)
+
+img5 = ImageTk.PhotoImage(Image.open('./pictures/models/002474_0.jpg'))
+img_5= Label(root, image=img5)
+img_5.grid(row=0, column=4)
+
+
+img_lbl_1=Label(root, text="000812_0.jpg")
+img_lbl_2=Label(root, text="000988_0.jpg")
+img_lbl_3=Label(root, text="000001_0.jpg")
+img_lbl_4=Label(root, text="000174_0.jpg")
+img_lbl_5=Label(root, text="002474_0.jpg")
+=======
 # Clean-up routine for the dataset target locations
 for filename in os.listdir('../Data_preprocessing/test_color'):
     os.remove('../Data_preprocessing/test_color/' + filename)
@@ -66,6 +110,7 @@ img_lbl_2 = Label(root, text="000988_0.jpg")
 img_lbl_3 = Label(root, text="000001_0.jpg")
 img_lbl_4 = Label(root, text="000174_0.jpg")
 img_lbl_5 = Label(root, text="002474_0.jpg")
+>>>>>>> 93f5be76a2540307ba491d746d6f8988b37dc701:Demo_pyton.py
 
 img_lbl_1.grid(row=1, column=0)
 img_lbl_2.grid(row=1, column=1)
@@ -73,6 +118,33 @@ img_lbl_3.grid(row=1, column=2)
 img_lbl_4.grid(row=1, column=3)
 img_lbl_5.grid(row=1, column=4)
 
+<<<<<<< HEAD:inference/Demo_pyton.py
+dress1 = ImageTk.PhotoImage(Image.open('./pictures/dresses/000192_1.jpg'))
+dress_1= Label(root, image=dress1)
+dress_1.grid(row=2, column=0)
+
+dress2 = ImageTk.PhotoImage(Image.open('./pictures/dresses/000445_1.jpg'))
+dress_2= Label(root, image=dress2)
+dress_2.grid(row=2, column=1)
+
+dress3 = ImageTk.PhotoImage(Image.open('./pictures/dresses/001301_1.jpg'))
+dress_3= Label(root, image=dress3)
+dress_3.grid(row=2, column=2)
+
+dress4 = ImageTk.PhotoImage(Image.open('./pictures/dresses/001879_1.jpg'))
+dress_4= Label(root, image=dress4)
+dress_4.grid(row=2, column=3)
+
+dress5 = ImageTk.PhotoImage(Image.open('./pictures/dresses/002337_1.jpg'))
+dress_5= Label(root, image=dress5)
+dress_5.grid(row=2, column=4)
+
+dress_lbl_1=Label(root, text="000192_1.jpg")
+dress_lbl_2=Label(root, text="000445_1.jpg")
+dress_lbl_3=Label(root, text="001301_1.jpg")
+dress_lbl_4=Label(root, text="001879_1.jpg")
+dress_lbl_5=Label(root, text="002337_1.jpg")
+=======
 # Dresses UI images
 dress1 = ImageTk.PhotoImage(Image.open('pictures/dresses/000192_1.jpg'))
 dress_1 = Label(root, image=dress1)
@@ -100,6 +172,7 @@ dress_lbl_2 = Label(root, text="000445_1.jpg")
 dress_lbl_3 = Label(root, text="001301_1.jpg")
 dress_lbl_4 = Label(root, text="001879_1.jpg")
 dress_lbl_5 = Label(root, text="002337_1.jpg")
+>>>>>>> 93f5be76a2540307ba491d746d6f8988b37dc701:Demo_pyton.py
 
 dress_lbl_1.grid(row=3, column=0)
 dress_lbl_2.grid(row=3, column=1)
@@ -107,13 +180,37 @@ dress_lbl_3.grid(row=3, column=2)
 dress_lbl_4.grid(row=3, column=3)
 dress_lbl_5.grid(row=3, column=4)
 
+<<<<<<< HEAD:inference/Demo_pyton.py
+
+=======
 # Drop-down menues
+>>>>>>> 93f5be76a2540307ba491d746d6f8988b37dc701:Demo_pyton.py
 variableDresses = StringVar(root)
 variableModels = StringVar(root)
 
 variableDresses.set("Choose dress")
 variableModels.set("Choose Model")
 
+<<<<<<< HEAD:inference/Demo_pyton.py
+menuDresses = OptionMenu(root,variableDresses,*OptionDresses)
+menuModels = OptionMenu(root,variableModels,*OptionModels)
+
+menuModels.grid(row=0,column=5)
+menuDresses.grid(row=2,column=5)
+
+btn = Button(root, text = "Modify ColorMap", command=launch_canvas)
+btn.grid(row = 0, column = 6)
+
+
+def lauchACGPN():
+    messagebox.showinfo('Message', 'You clicked the Submit button!')
+
+
+btn = Button(root, text="LAUNCH ACGPN", command=lauchACGPN)
+btn.grid(row=2, column=6)
+
+root.mainloop()
+=======
 menuDresses = OptionMenu(root, variableDresses, *OptionDresses)
 menuModels = OptionMenu(root, variableModels, *OptionModels)
 
@@ -148,3 +245,4 @@ btn = Button(root, text="LAUNCH ACGPN", command=wrapper_acgpn)
 btn.grid(row=2, column=6)
 
 root.mainloop()
+>>>>>>> 93f5be76a2540307ba491d746d6f8988b37dc701:Demo_pyton.py
