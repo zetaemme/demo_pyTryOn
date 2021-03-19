@@ -63,7 +63,7 @@ olefile=0.46=py37_0
 opencv=3.4.2=py37h6fd60c2_1
 openssl=1.1.1g=h7b6447c_0
 pcre=8.44=he6710b0_0
-pillow=7.2.0=py37hb39fc2d_0
+pillow=8.1.1=py37hb39fc2d_0
 pip=20.2.2=py37_0
 pixman=0.40.0=h7b6447c_0
 protobuf=3.13.0=py37h3340039_0
